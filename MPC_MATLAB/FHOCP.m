@@ -1,0 +1,114 @@
+function u_opt = FHOCP(xk, Q, R, P, N, n, n_u, tau_s, pose_ref, theta_ref, robot_params)
+    % FHOCP
+    % Solve the Finite Horizon Control Optimization Problem (FHOCP)
+    %
+    % Arguments
+    % - xk: The current state
+    % - Q: The state weight
+    % - R: The input weight
+    % - P: The final state weight
+    % - N: The prediction horizon
+    % - n: System Order
+    % - n_u: Numer of Inputs
+    % - tau_s: Discretization time-step
+    % - pose_ref: Pose reference for the Robot
+    % - theta_ref: Heading angle for the Robot
+    % - robot_params: Vector containing [d l r]
+    %
+    % Returns
+    % - u_opt: The optimal control move at the current time step (u^*(k))
+       
+    % Import the CasADi toolkit and instantiate the optimization problem (opti)
+    import casadi.*;
+    opti = casadi.Opti();
+    
+    
+    %%%%%% Declare the optimization variables %%%%%%
+    u = opti.variable(n_u, N);
+    x = opti.variable(n, N+1);
+    omega_min = -100*ones(n_u,1);
+    omega_max = 100*ones(n_u,1);
+
+   
+    %%%%%% Impose the constraints %%%%%%
+    
+    % Initial state constraint: x(k) == xk
+    opti.subject_to(x(:,1) == xk); 
+
+    % Input constraints:  u_min <= u(k+i) <= u_max
+    % This constraint has to be computed for the model
+    for k = 1:N
+        M = transformationMatrix(theta_ref(k), robot_params(1), robot_params(2), robot_params(3));
+        opti.subject_to(M\omega_min <= u(:, k) <= M\omega_max);
+        %opti.subject_to(1E-4 <= u(:, k) <= 100);
+    end 
+    
+    % Terminal constraint: x(k+N+1) = x(:,end-1) We stopped
+    % opti.subject_to(x(:,end) == x(:,end-1));
+    opti.subject_to(x(:,end) == pose_ref(:,end));
+    
+    %%%%%% System dynamics and cost function %%%%%%
+    
+    % Cost function initialization
+    J = 0;
+    
+    for ii=1:N      % Note that the MATLAB index ii = 1 corresponds to i = 0 in the formula
+        % Set the system dynamics as a constraint:  x(k+i+1) == f(x(k+i), u(k+i))
+        opti.subject_to(x(:,ii+1)==model_Robot_pointP(x(:, ii), u(:, ii), tau_s));
+        
+        % Add the i-th term to the cost function:
+        J = J + (u(:,ii))' * R * (u(:,ii)) + (x(:,ii)-pose_ref(:,ii))' * Q * (x(:,ii)-pose_ref(:,ii));
+    end
+
+    J = J + (x(:,end)-pose_ref(:,end))' * P * (x(:,end)-pose_ref(:,end));
+    
+    
+    %%%%%% Set the initial guess of the optimization variables %%%%%%
+    
+    % Possible initial guess for x:    x(k+i) = xk  ∀i = 0, ..., N
+    opti.set_initial(x, repmat(xk, 1, N+1));   
+    
+    % Possible initial guess for u:    u(k+i) = u_min  ∀i = 0, ..., N-1
+    M = transformationMatrix(theta_ref(1), 0.5, 1, 0.25);
+    opti.set_initial(u, repmat((M\omega_min), 1, N)); 
+    
+    
+    
+    %%%%%% CasADi Settings (do not change) %%%%%%
+    % Declare the cost function
+    opti.minimize(J);
+    
+    % Options of the optimization problem
+    prob_opts = struct;
+    prob_opts.expand = true;
+    prob_opts.ipopt.print_level = 0;    % Disable printing
+    prob_opts.print_time = false;       % Do not print the timestamp
+    
+    % Options of the solver
+    ip_opts = struct;
+    ip_opts.print_level = 0;            % Disable printing
+    ip_opts.max_iter = 1e5;             % Maximum iterations
+    ip_opts.compl_inf_tol = 1e-6;
+    
+    % Set the solver
+    opti.solver('ipopt', prob_opts, ip_opts);
+    
+    
+    %%%%%% Solve the optimization problem %%%%%%
+    try
+        sol = opti.solve();
+        
+        % Extract the optimal con;
+        u_opt = sol.value(u(:,1));       
+    catch EX
+        warning("Solver failed");
+        u_opt = [15;15]; % fallback: use equilibrium input
+        %keyboard; % Enter the debug mode
+    end
+
+    disp("------------------------------------")
+    disp(" La Pose Actual ")
+    disp(xk)
+    disp(" El angulo ref ")
+    disp(u_opt)
+end

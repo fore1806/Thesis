@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mask SelfModifiable="on">
+  <Type>MPC</Type>
+  <SourceCheckSum>C2D03CF04D9F04E5132CB9D96C5CBBA6</SourceCheckSum>
+  <Display IconOpaque="transparent" RunInitForIconRedraw="off">disp(&apos;MPC&apos;);
+port_label(&apos;input&apos;,1,&apos;xk&apos;);
+port_label(&apos;input&apos;,2,&apos;pose_ref&apos;);
+port_label(&apos;input&apos;,3,&apos;theta_ref&apos;);
+port_label(&apos;input&apos;,4,&apos;time_sim&apos;);
+port_label(&apos;input&apos;,5,&apos;robot_params&apos;);
+port_label(&apos;output&apos;,1,&apos;u_opt&apos;);
+</Display>
+  <Description>Model Predictive Control Block</Description>
+  <Initialization>matlab.system.MLSysBlockIconAndPortLabelsInfo.updateMLSysBlockIconAndPortLabels(gcbh)</Initialization>
+  <MaskParameter Name="tau_s" Type="edit" Tunable="off">
+    <Prompt>tau_s:</Prompt>
+    <Value>0.2</Value>
+  </MaskParameter>
+  <MaskParameter Name="Q" Type="edit" Tunable="off">
+    <Prompt>Q:</Prompt>
+    <Value>5*eye(2)</Value>
+  </MaskParameter>
+  <MaskParameter Name="R" Type="edit" Tunable="off">
+    <Prompt>R:</Prompt>
+    <Value>eye(2)</Value>
+  </MaskParameter>
+  <MaskParameter Name="P" Type="edit" Tunable="off">
+    <Prompt>P:</Prompt>
+    <Value>10*eye(2)</Value>
+  </MaskParameter>
+  <MaskParameter Name="N" Type="edit" Tunable="off">
+    <Prompt>N:</Prompt>
+    <Value>10</Value>
+  </MaskParameter>
+  <MaskParameter Name="SimulateUsing" Type="popup" Evaluate="off" Tunable="off">
+    <Prompt>SystemBlock:MATLABSystem:SimulateUsing</Prompt>
+    <Value>Interpreted execution</Value>
+    <TypeOptions>
+      <Option>SystemBlock:MATLABSystem:SimulateUsingCodeGeneration</Option>
+      <Option>SystemBlock:MATLABSystem:SimulateUsingInterpretedExecution</Option>
+    </TypeOptions>
+  </MaskParameter>
+  <DialogControl Type="Group" Name="DescGroupVar">
+    <Prompt>MPC</Prompt>
+    <DialogControl Type="Text" Name="DescTextVar">
+      <Prompt>%&lt;MaskDescription&gt;</Prompt>
+    </DialogControl>
+    <DialogControl Type="Hyperlink" Name="SourceCodeLink">
+      <Prompt>Source code</Prompt>
+      <Callback>edit(&apos;MPC&apos;);</Callback>
+    </DialogControl>
+  </DialogControl>
+  <DialogControl Type="Group" Name="SectionGroup0_Section1">
+    <Prompt>Simulink:studio:ToolBarParametersMenu</Prompt>
+    <ControlOptions AlignPrompts="on"/>
+    <DialogControl Type="Edit" Name="tau_s">
+      <Prompt>tau_s:</Prompt>
+      <ControlOptions PromptLocation="left"/>
+    </DialogControl>
+    <DialogControl Type="Edit" Name="Q">
+      <Prompt>Q:</Prompt>
+      <ControlOptions PromptLocation="left"/>
+    </DialogControl>
+    <DialogControl Type="Edit" Name="R">
+      <Prompt>R:</Prompt>
+      <ControlOptions PromptLocation="left"/>
+    </DialogControl>
+    <DialogControl Type="Edit" Name="P">
+      <Prompt>P:</Prompt>
+      <ControlOptions PromptLocation="left"/>
+    </DialogControl>
+    <DialogControl Type="Edit" Name="N">
+      <Prompt>N:</Prompt>
+      <ControlOptions PromptLocation="left"/>
+    </DialogControl>
+  </DialogControl>
+  <DialogControl Type="Panel" Name="SectionGroup0_Section2">
+    <ControlOptions AlignPrompts="on"/>
+    <DialogControl Type="Popup" Name="SimulateUsing">
+      <Prompt>Simulate using:</Prompt>
+      <Tooltip>SystemBlock:MATLABSystem:SimulateUsingDescription</Tooltip>
+      <ControlOptions PromptLocation="left"/>
+    </DialogControl>
+  </DialogControl>
+</Mask>
