@@ -60,7 +60,7 @@ function u_opt = FHOCP(xk, Q, R, P, Y, N, n, n_u, tau_s, pose_ref, theta_ref, ro
         J = J + (u(:,ii))' * R * (u(:,ii)) + (x(:,ii)-pose_ref(:,ii))' * Q * (x(:,ii)-pose_ref(:,ii));
     end
 
-    J = J + (x(:,end)-pose_ref(:,end))' * P * (x(:,end)-pose_ref(:,end)) + (x_ter_end-pose_ref(:,end))' * Y * (x_ter_end-pose_ref(:,end));
+    J = J + (x(:,end)-pose_ref(:,end))' * P * (x(:,end)-pose_ref(:,end));
     
     
     %%%%%% Set the initial guess of the optimization variables %%%%%%
@@ -72,7 +72,8 @@ function u_opt = FHOCP(xk, Q, R, P, Y, N, n, n_u, tau_s, pose_ref, theta_ref, ro
     M = transformationMatrix(theta_ref(1), 0.5, 1, 0.25);
     opti.set_initial(u, repmat((M\omega_min), 1, N)); 
     
-       
+    
+    
     %%%%%% CasADi Settings (do not change) %%%%%%
     % Declare the cost function
     opti.minimize(J);
@@ -108,6 +109,6 @@ function u_opt = FHOCP(xk, Q, R, P, Y, N, n, n_u, tau_s, pose_ref, theta_ref, ro
     disp("------------------------------------")
     disp(" La Pose Actual ")
     disp(xk)
-    disp(" Señal de Control ")
+    disp(" El angulo ref ")
     disp(u_opt)
 end

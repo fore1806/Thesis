@@ -10,6 +10,7 @@ classdef MPC< matlab.System
        Q = [];
        R = [];
        P = [];
+       Y = [];
        N = 10;
     end
     
@@ -43,7 +44,7 @@ classdef MPC< matlab.System
             end
             
             % Solve the FHOCP
-            u_opt = FHOCP(xk, obj.Q, obj.R, obj.P, obj.N, 2, 2, obj.tau_s, pose', theta', robot_params);
+            u_opt = FHOCP(xk, obj.Q, obj.R, obj.P, obj.Y, obj.N, 2, 2, obj.tau_s, pose', theta', robot_params);
           
         end
 
