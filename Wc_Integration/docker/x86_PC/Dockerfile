@@ -1,0 +1,48 @@
+# Use the ARG provided by Docker Compose/Env
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+ENV ROS_DISTRO=humble
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install ROS 2 Humble using the architecture-aware method
+RUN apt-get update && apt-get install -y curl gnupg2 lsb-release && \
+    curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+# Install System Dependencies
+RUN apt-get update && apt-get install -y \
+    ros-${ROS_DISTRO}-desktop \
+    python3-colcon-common-extensions \
+    python3-rosdep \
+    libpcap-dev \
+    libyaml-cpp-dev \
+    git \
+    tmux \
+    udev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Setup Workspace
+WORKDIR /ros2_ws/src
+
+# Clone SDKs (Use shallow clones to save space on Jetson)
+RUN git clone --depth 1 --recurse-submodules https://github.com/RoboSense-LiDAR/rslidar_sdk.git && \
+    git clone --depth 1 https://github.com/stereolabs/zed-ros2-wrapper.git
+
+# Build the workspace
+WORKDIR /ros2_ws
+# Using --continue-on-error or specific package selection can help if one SDK fails initially
+RUN . /opt/ros/${ROS_DISTRO}/setup.sh && \
+    colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+# Environment Setup
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# This ensures every new terminal starts in the workspace with ROS sourced
+RUN echo "source /entrypoint.sh" >> /root/.bashrc
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash"]
