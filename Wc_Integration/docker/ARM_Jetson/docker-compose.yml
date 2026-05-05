@@ -1,0 +1,29 @@
+services:
+  robot_dev:
+    build:
+      context: .
+      args:
+        - BASE_IMAGE=${BASE_IMAGE}
+    container_name: ${CONTAINER_NAME}
+    runtime: nvidia
+    network_mode: host
+    privileged: true
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID:-0}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev:/dev
+      # Map the local src to the ROS workspace
+      - ./src:/ros2_ws/src/wheelchair_custom
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
