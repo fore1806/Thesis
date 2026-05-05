@@ -1,0 +1,446 @@
+<?xml version="1.0" ?>
+<robot name="Wheelchair_ActualSetUp" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find Wheelchair_ActualSetUp_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find Wheelchair_ActualSetUp_description)/urdf/Wheelchair_ActualSetUp.trans" />
+<xacro:include filename="$(find Wheelchair_ActualSetUp_description)/urdf/Wheelchair_ActualSetUp.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-3.9125787838253636e-05 0.41509073007114916 0.24429777433037342" rpy="0 0 0"/>
+    <mass value="740.6793588560442"/>
+    <inertia ixx="66.057812" iyy="26.376331" izz="59.697731" ixy="0.007768" iyz="4.83104" ixz="-0.14894"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_Wheel_1">
+  <inertial>
+    <origin xyz="0.040000000000000036 8.326672684688674e-17 0.0" rpy="0 0 0"/>
+    <mass value="7.158118861204342"/>
+    <inertia ixx="0.109609" iyy="0.058622" izz="0.058622" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.24 -0.175 -0.205" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/left_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.24 -0.175 -0.205" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/left_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_Wheel_1">
+  <inertial>
+    <origin xyz="-0.040000000000000036 8.326672684688674e-17 0.0" rpy="0 0 0"/>
+    <mass value="7.158118861204342"/>
+    <inertia ixx="0.109609" iyy="0.058622" izz="0.058622" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.24 -0.175 -0.205" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/right_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.24 -0.175 -0.205" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/right_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_caster_support_1">
+  <inertial>
+    <origin xyz="-4.440892098500626e-16 -0.09318612303454077 0.012125587554971506" rpy="0 0 0"/>
+    <mass value="1.1468555981396837"/>
+    <inertia ixx="0.006448" iyy="0.000704" izz="0.005854" ixy="0.0" iyz="0.001329" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.28 -0.28 -0.65" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/right_caster_support_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.28 -0.28 -0.65" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/right_caster_support_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_caster_2_1">
+  <inertial>
+    <origin xyz="-0.015000000000000568 1.3877787807814457e-17 1.2028525098184417e-07" rpy="0 0 0"/>
+    <mass value="0.49303369707274797"/>
+    <inertia ixx="0.001387" iyy="0.00073" izz="0.00073" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2875 -0.075 -0.705003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/right_caster_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.2875 -0.075 -0.705003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/right_caster_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_caster_1_1">
+  <inertial>
+    <origin xyz="0.014999999999999514 1.3877787807814457e-17 1.2028525098184417e-07" rpy="0 0 0"/>
+    <mass value="0.49303369707274797"/>
+    <inertia ixx="0.001387" iyy="0.00073" izz="0.00073" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2725 -0.075 -0.705003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/right_caster_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.2725 -0.075 -0.705003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/right_caster_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_caster_support_1">
+  <inertial>
+    <origin xyz="4.440892098500626e-16 -0.09318612303454074 0.012125587554971506" rpy="0 0 0"/>
+    <mass value="1.1468555981396837"/>
+    <inertia ixx="0.006448" iyy="0.000704" izz="0.005854" ixy="0.0" iyz="0.001329" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.28 -0.28 -0.65" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/left_caster_support_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.28 -0.28 -0.65" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/left_caster_support_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_caster_1_1">
+  <inertial>
+    <origin xyz="-0.014999999999999514 1.3877787807814457e-17 1.2028525098184417e-07" rpy="0 0 0"/>
+    <mass value="0.49303369707274797"/>
+    <inertia ixx="0.001387" iyy="0.00073" izz="0.00073" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.2725 -0.075 -0.705003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/left_caster_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.2725 -0.075 -0.705003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/left_caster_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_caster_2_1">
+  <inertial>
+    <origin xyz="0.015000000000000568 1.3877787807814457e-17 1.2028525098184417e-07" rpy="0 0 0"/>
+    <mass value="0.49303369707274797"/>
+    <inertia ixx="0.001387" iyy="0.00073" izz="0.00073" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.2875 -0.075 -0.705003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/left_caster_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.2875 -0.075 -0.705003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/left_caster_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_caster_4_1">
+  <inertial>
+    <origin xyz="0.010000000000000009 0.0 6.938893903907228e-18" rpy="0 0 0"/>
+    <mass value="0.1460840583919254"/>
+    <inertia ixx="0.000183" iyy="9.6e-05" izz="9.6e-05" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.168 -0.05 0.0175" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_4_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.168 -0.05 0.0175" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_4_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_caster_3_1">
+  <inertial>
+    <origin xyz="-0.010000000000000009 -1.3877787807814457e-17 -3.469446951953614e-18" rpy="0 0 0"/>
+    <mass value="0.14608405839192537"/>
+    <inertia ixx="0.000183" iyy="9.6e-05" izz="9.6e-05" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.168 -0.05 0.0175" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.168 -0.05 0.0175" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_caster_support_1">
+  <inertial>
+    <origin xyz="-3.7759780613758454e-13 -0.042503323132642726 0.007280223458674934" rpy="0 0 0"/>
+    <mass value="0.5335655221414621"/>
+    <inertia ixx="0.000745" iyy="0.000181" izz="0.000619" ixy="0.0" iyz="0.000162" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 -0.16 0.08" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_support_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 -0.16 0.08" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_support_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_caster_1_1">
+  <inertial>
+    <origin xyz="0.015 1.3877787807814457e-17 -2.0816681711721685e-17" rpy="0 0 0"/>
+    <mass value="0.49303369707274786"/>
+    <inertia ixx="0.001387" iyy="0.00073" izz="0.00073" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0075 -0.075 0.055" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0075 -0.075 0.055" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_caster_2_1">
+  <inertial>
+    <origin xyz="-0.015 2.7755575615628914e-17 0.0" rpy="0 0 0"/>
+    <mass value="0.49303369707274797"/>
+    <inertia ixx="0.001387" iyy="0.00073" izz="0.00073" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0075 -0.075 0.055" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0075 -0.075 0.055" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_caster_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_lidar_1">
+  <inertial>
+    <origin xyz="-3.8200916208097624e-08 0.029463822476546164 -3.820067217066847e-08" rpy="0 0 0"/>
+    <mass value="0.18737375703247397"/>
+    <inertia ixx="0.000117" iyy="8.6e-05" izz="0.000117" ixy="-0.0" iyz="-0.0" ixz="3e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.250052 -0.358 0.030052" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.250052 -0.358 0.030052" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/rear_lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_Lidar_1">
+  <inertial>
+    <origin xyz="3.8200915958297443e-08 0.02946382247654611 3.8200672847210626e-08" rpy="0 0 0"/>
+    <mass value="0.18737375703247394"/>
+    <inertia ixx="0.000117" iyy="8.6e-05" izz="0.000117" ixy="0.0" iyz="0.0" ixz="3e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.220052 -0.308 -0.760052" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/front_Lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.220052 -0.308 -0.760052" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Wheelchair_ActualSetUp_description/meshes/front_Lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 1" type="continuous">
+  <origin xyz="0.24 0.175 0.205" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_Wheel_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 2" type="continuous">
+  <origin xyz="-0.24 0.175 0.205" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_Wheel_1"/>
+  <axis xyz="-1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 3" type="continuous">
+  <origin xyz="-0.28 0.28 0.65" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_caster_support_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 4" type="continuous">
+  <origin xyz="-0.0075 -0.205 0.055003" rpy="0 0 0"/>
+  <parent link="right_caster_support_1"/>
+  <child link="right_caster_2_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 5" type="continuous">
+  <origin xyz="0.0075 -0.205 0.055003" rpy="0 0 0"/>
+  <parent link="right_caster_support_1"/>
+  <child link="right_caster_1_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 6" type="continuous">
+  <origin xyz="0.28 0.28 0.65" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_caster_support_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 7" type="continuous">
+  <origin xyz="-0.0075 -0.205 0.055003" rpy="0 0 0"/>
+  <parent link="left_caster_support_1"/>
+  <child link="left_caster_1_1"/>
+  <axis xyz="-1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 8" type="continuous">
+  <origin xyz="0.0075 -0.205 0.055003" rpy="0 0 0"/>
+  <parent link="left_caster_support_1"/>
+  <child link="left_caster_2_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 9" type="continuous">
+  <origin xyz="-0.168 0.05 -0.0175" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_caster_4_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 10" type="continuous">
+  <origin xyz="0.168 0.05 -0.0175" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_caster_3_1"/>
+  <axis xyz="-1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 11" type="continuous">
+  <origin xyz="0.0 0.16 -0.08" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_caster_support_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 12" type="continuous">
+  <origin xyz="0.0075 -0.085 0.025" rpy="0 0 0"/>
+  <parent link="rear_caster_support_1"/>
+  <child link="rear_caster_1_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Revolute 13" type="continuous">
+  <origin xyz="-0.0075 -0.085 0.025" rpy="0 0 0"/>
+  <parent link="rear_caster_support_1"/>
+  <child link="rear_caster_2_1"/>
+  <axis xyz="-1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Rigid 14" type="fixed">
+  <origin xyz="-0.250052 0.358 -0.030052" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_lidar_1"/>
+</joint>
+
+<joint name="Rigid 15" type="fixed">
+  <origin xyz="0.220052 0.308 0.760052" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_Lidar_1"/>
+</joint>
+
+</robot>

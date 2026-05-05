@@ -1,4 +1,4 @@
-classdef MPC< matlab.System
+classdef MPCparking< matlab.System
     % Model Predictive Control Block
    
     % Define the properties of the block, that can be changed 
@@ -50,7 +50,7 @@ classdef MPC< matlab.System
             disp(idx)
 
             % We find the final index
-            idx_end = min(idx + obj.N, size(pose_ref,1));
+            idx_end = min(idx + obj.N, 1);
             disp("------------")
             disp(size(pose_ref))
             disp(idx_end)
@@ -67,7 +67,7 @@ classdef MPC< matlab.System
             theta(1:len, 1) = theta_ref(idx:idx_end, 1);
 
             if len < obj.N
-                pose(len+1:end,:) = repmat(pose(len,:), obj.N+1 - len, 1);
+                pose(len+1:end,:) = repmat(pose(len,:), obj.N - len, 1);
                 theta(len+1:end,1) = theta(len,1);
             end
 

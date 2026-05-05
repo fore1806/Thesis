@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Mask SelfModifiable="on">
   <Type>MPC</Type>
-  <SourceCheckSum>C2D03CF04D9F04E5132CB9D96C5CBBA6</SourceCheckSum>
+  <SourceCheckSum>6F5FD3B6007900BF7281BA3D704FEC26</SourceCheckSum>
   <Display IconOpaque="transparent" RunInitForIconRedraw="off">disp(&apos;MPC&apos;);
 port_label(&apos;input&apos;,1,&apos;xk&apos;);
 port_label(&apos;input&apos;,2,&apos;pose_ref&apos;);
 port_label(&apos;input&apos;,3,&apos;theta_ref&apos;);
-port_label(&apos;input&apos;,4,&apos;time_sim&apos;);
-port_label(&apos;input&apos;,5,&apos;robot_params&apos;);
+port_label(&apos;input&apos;,4,&apos;robot_params&apos;);
 port_label(&apos;output&apos;,1,&apos;u_opt&apos;);
 </Display>
   <Description>Model Predictive Control Block</Description>
@@ -28,9 +27,17 @@ port_label(&apos;output&apos;,1,&apos;u_opt&apos;);
     <Prompt>P:</Prompt>
     <Value>10*eye(2)</Value>
   </MaskParameter>
+  <MaskParameter Name="Y" Type="edit" Tunable="off">
+    <Prompt>Y:</Prompt>
+    <Value>3*eye(2)</Value>
+  </MaskParameter>
   <MaskParameter Name="N" Type="edit" Tunable="off">
     <Prompt>N:</Prompt>
     <Value>10</Value>
+  </MaskParameter>
+  <MaskParameter Name="epsilon" Type="edit" Tunable="off">
+    <Prompt>epsilon:</Prompt>
+    <Value>0.1</Value>
   </MaskParameter>
   <MaskParameter Name="SimulateUsing" Type="popup" Evaluate="off" Tunable="off">
     <Prompt>SystemBlock:MATLABSystem:SimulateUsing</Prompt>
@@ -69,8 +76,16 @@ port_label(&apos;output&apos;,1,&apos;u_opt&apos;);
       <Prompt>P:</Prompt>
       <ControlOptions PromptLocation="left"/>
     </DialogControl>
+    <DialogControl Type="Edit" Name="Y">
+      <Prompt>Y:</Prompt>
+      <ControlOptions PromptLocation="left"/>
+    </DialogControl>
     <DialogControl Type="Edit" Name="N">
       <Prompt>N:</Prompt>
+      <ControlOptions PromptLocation="left"/>
+    </DialogControl>
+    <DialogControl Type="Edit" Name="epsilon">
+      <Prompt>epsilon:</Prompt>
       <ControlOptions PromptLocation="left"/>
     </DialogControl>
   </DialogControl>

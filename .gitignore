@@ -1,8 +1,8 @@
 # Ignorar la carpeta CV
 CV/
 
-# Ignorar Old Theses
-Old_Theses/
+# Ignorar DOCUMENTS
+DOCUMENTS/
 
-# Ignorar Papers
-PAPERS/
+# Ignorar Slides
+SLIDES/
