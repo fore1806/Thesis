@@ -1,0 +1,5 @@
+output_bags:
+  - uri: session2Real_decompressed
+    storage_id: sqlite3
+    compression_format: ''
+    compression_mode: ''

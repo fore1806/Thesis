@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>lidar_camera_object_association</name>
+  <version>0.1.0</version>
+  <description>
+    C++ sensor fusion node that associates ZED 2i camera detections with
+    RoboSense RS-Helios-16P LiDAR point clouds using ROS 2 TF2 and
+    time-synchronised message_filters.
+  </description>
+
+  <maintainer email="your@email.com">Your Name</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Build system -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Core ROS 2 -->
+  <depend>rclcpp</depend>
+  <depend>message_filters</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_eigen</depend>
+
+  <!-- Messages -->
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>std_msgs</depend>
+
+  <!-- ZED ROS 2 wrapper messages -->
+  <depend>zed_msgs</depend>
+
+  <!-- Linear algebra (header-only) -->
+  <depend>eigen3_cmake_module</depend>
+
+  <!-- Launch -->
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+
+  <!-- Testing -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -1,0 +1,52 @@
+# config/fusion_pcl_params.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Parameters for Strategy B — pointcloud merge fusion.
+# Load with:
+#   ros2 launch lidar_camera_fusion_pcl fusion_b.launch.py
+# or override individual values:
+#   ros2 run lidar_camera_fusion_pcl cloud_merge_node \
+#       --ros-args --params-file config/fusion_b_params.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+
+cloud_merge_node:
+  ros__parameters:
+    # Frame into which both clouds are transformed before concatenation.
+    # Must exist in your TF tree (check with: ros2 run tf2_tools view_frames).
+    # Common choices: "base_link", "odom", "map", "rslidar" (keep LiDAR fixed).
+    target_frame: "zed_camera_center"
+
+    # TF lookup timeout in seconds.
+    # Increase if you see frequent TF timeout warnings during fast motion.
+    tf_timeout_s: 0.1
+
+    # ApproximateTimeSynchronizer settings.
+    # queue_size: how many messages to buffer per topic.
+    # slop_s:     maximum timestamp difference considered "simultaneous".
+    #             LiDAR @ ~10 Hz, ZED @ ~15 Hz → 0.05 s is a safe starting point.
+    queue_size: 10
+    slop_s: 0.05 # 0.05
+
+    # Voxel downsampling on the merged cloud.
+    # apply_voxel: set to false to keep every point (higher memory, higher detail).
+    # voxel_size:  leaf size in metres. 0.05 = 5 cm grid. Smaller = denser.
+    apply_voxel: true
+    voxel_size: 0.05
+
+    # Topic names (must match what the bag publishes).
+    lidar_topic:     "/rslidar_points"
+    zed_cloud_topic: "/zed/cloud_filtered"    # or /zed/zed_node/point_cloud/cloud_registered
+    fused_topic:     "/fused_cloud"
+
+cloud_filter_node:
+  ros__parameters:
+    input_topic:  "/zed/zed_node/point_cloud/cloud_registered"
+    output_topic: "/zed/cloud_filtered"
+
+    # Passthrough filter along Z axis (height in sensor frame).
+    # Remove sky (z > 8 m) and ground below the sensor (z < -2 m).
+    z_min: -2.0
+    z_max:  8.0
+
+    # Downsample the ZED cloud before merging (reduces duplicated density).
+    apply_voxel: true
+    voxel_size: 0.03

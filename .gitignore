@@ -6,3 +6,20 @@ DOCUMENTS/
 
 # Ignorar Slides
 SLIDES/
+
+# Ignorar Los Datos de ROS
+thesis_ws/build/
+thesis_ws/devel/
+thesis_ws/install/
+thesis_ws/log/
+
+# Ignorar bags y datos de sensores grandes
+*.db3
+*.db3-shm
+*.db3-wal
+thesis_ws/src/bags/zed_sessions/
+thesis_ws/src/bags/fusion_sensor/session*/
+
+# Ignorar archivos compilados de Python
+__pycache__/
+*.pyc

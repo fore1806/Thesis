@@ -1,31 +1,32 @@
 <?xml version="1.0" ?>
-<robot name="Wheelchair_ActualSetUp" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<robot name="wheelchair_actual_set_up" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-<transmission name="Revolute 1_tran">
+<transmission name="left_wheel_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 1">
-    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  <joint name="left_wheel_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
   </joint>
-  <actuator name="Revolute 1_actr">
-    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  <actuator name="left_wheel_actr">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
-<transmission name="Revolute 2_tran">
+<transmission name="right_wheel_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 2">
-    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  <joint name="right_wheel_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
   </joint>
-  <actuator name="Revolute 2_actr">
-    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  <actuator name="right_wheel_actr">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
+<!---> CASTER WHEELS
 <transmission name="Revolute 3_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 3">
+  <joint name="right_caster_support_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 3_actr">
@@ -36,7 +37,7 @@
 
 <transmission name="Revolute 4_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 4">
+  <joint name="right_caster_wheel_2_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 4_actr">
@@ -47,7 +48,7 @@
 
 <transmission name="Revolute 5_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 5">
+  <joint name="right_caster_wheel_1_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 5_actr">
@@ -58,7 +59,7 @@
 
 <transmission name="Revolute 6_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 6">
+  <joint name="left_caster_support_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 6_actr">
@@ -69,7 +70,7 @@
 
 <transmission name="Revolute 7_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 7">
+  <joint name="left_caster_wheel_1_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 7_actr">
@@ -80,7 +81,7 @@
 
 <transmission name="Revolute 8_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 8">
+  <joint name="left_caster_wheel_2_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 8_actr">
@@ -91,7 +92,7 @@
 
 <transmission name="Revolute 9_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 9">
+  <joint name="rear_caster_wheel_4_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 9_actr">
@@ -102,7 +103,7 @@
 
 <transmission name="Revolute 10_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 10">
+  <joint name="rear_caster_wheel_3_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 10_actr">
@@ -113,7 +114,7 @@
 
 <transmission name="Revolute 11_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 11">
+  <joint name="rear_caster_support_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 11_actr">
@@ -124,7 +125,7 @@
 
 <transmission name="Revolute 12_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 12">
+  <joint name="rear_caster_wheel_1_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 12_actr">
@@ -135,7 +136,7 @@
 
 <transmission name="Revolute 13_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="Revolute 13">
+  <joint name="rear_caster_wheel_2_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
   <actuator name="Revolute 13_actr">
@@ -143,5 +144,5 @@
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
-
+<-->
 </robot>
