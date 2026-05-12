@@ -1,6 +1,6 @@
 # Autonomous Navigation of a Wheelchair Using a Camera and a 3D LiDAR
 
-Thesis project — Universidad Nacional de Colombia.  
+Thesis project — Politecnico di Milano.  
 **Author:** Felipe Forero (anforero@unal.edu.co)
 
 ---
