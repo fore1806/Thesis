@@ -4,9 +4,17 @@
 <xacro:property name="body_color" value="Gazebo/Silver" />
 
 <gazebo>
-  <plugin filename="gz_ros2_control-system"
-          name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-    <parameters>$(find wheelchair_actual_set_up_description)/config/ros2_controllers.yaml</parameters>
+  <plugin filename="libignition-gazebo6-diff-drive-system.so"
+          name="ignition::gazebo::systems::DiffDrive">
+    <left_joint>left_wheel_joint</left_joint>
+    <right_joint>right_wheel_joint</right_joint>
+    <wheel_separation>0.48</wheel_separation>
+    <wheel_radius>0.175</wheel_radius>
+    <odom_publish_frequency>50</odom_publish_frequency>
+    <topic>/cmd_vel</topic>
+    <odom_topic>/odom</odom_topic>
+    <frame_id>odom</frame_id>
+    <child_frame_id>base_link</child_frame_id>
   </plugin>
 </gazebo>
 <gazebo reference="base_link">
@@ -19,16 +27,16 @@
 
 <gazebo reference="left_Wheel_1">
   <material>${body_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="right_Wheel_1">
   <material>${body_color}</material>
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="right_caster_support_1">

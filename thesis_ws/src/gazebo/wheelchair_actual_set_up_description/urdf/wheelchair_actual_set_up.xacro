@@ -39,9 +39,9 @@
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.24 -0.175 -0.205" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 1.5708 0"/>
     <geometry>
-      <mesh filename="package://wheelchair_actual_set_up_description/meshes/left_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <cylinder radius="0.175" length="0.08"/>
     </geometry>
   </collision>
 </link>
@@ -60,9 +60,9 @@
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0.24 -0.175 -0.205" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 1.5708 0"/>
     <geometry>
-      <mesh filename="package://wheelchair_actual_set_up_description/meshes/right_Wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <cylinder radius="0.175" length="0.08"/>
     </geometry>
   </collision>
 </link>
@@ -345,6 +345,8 @@
   <parent link="base_link"/>
   <child link="left_Wheel_1"/>
   <axis xyz="1.0 0.0 0.0"/>
+  <limit effort="100" velocity="10"/>
+  <dynamics damping="0.01" friction="0.0"/>
 </joint>
 
 <joint name="right_wheel_joint" type="continuous">
@@ -352,6 +354,8 @@
   <parent link="base_link"/>
   <child link="right_Wheel_1"/>
   <axis xyz="-1.0 0.0 0.0"/>
+  <limit effort="100" velocity="10"/>
+  <dynamics damping="0.01" friction="0.0"/>
 </joint>
 
 <joint name="right_caster_support_joint" type="continuous">

@@ -16,9 +16,7 @@ from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
     IncludeLaunchDescription,
-    TimerAction,
 )
-from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
@@ -77,50 +75,23 @@ def generate_launch_description():
             '-x', '0.0',
             '-y', '0.0',
             '-z', '0.05',   # slight lift so it doesn't clip the ground plane
-            '-R', '1.5708', # Corect the bad orientation
+            '-R', '1.5708', # Correct the bad orientation
             '-P', '0.0',
             '-Y', '0.0',
         ],
     )
 
     # 4. ROS ↔ Gazebo topic bridge
-    #    Format: <gz_topic>@<ros_msg_type>[<gz_msg_type>
-    #    [ = gz→ros,  ] = ros→gz,  @ = bidirectional
+    #    /cmd_vel: ROS→Gz  (drives the native DiffDrive plugin)
+    #    /odom:   Gz→ROS   (published by the native DiffDrive plugin)
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
         output='screen',
-        arguments=[
-            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
-            '/scan_front@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
-            '/scan_rear@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
-            '/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist',
-            '/odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry',
-            '/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',
-        ],
-        parameters=[{'use_sim_time': True}],
-    )
-
-    # 5. Controller spawner — delayed 3 s to let Gazebo finish loading
-    #    joint_state_broadcaster must start before diff_drive_controller
-    load_joint_state_broadcaster = TimerAction(
-        period=3.0,
-        actions=[Node(
-            package='controller_manager',
-            executable='spawner',
-            arguments=['joint_state_broadcaster', '--controller-manager', '/controller_manager'],
-            output='screen',
-        )],
-    )
-
-    load_diff_drive_controller = TimerAction(
-        period=4.0,
-        actions=[Node(
-            package='controller_manager',
-            executable='spawner',
-            arguments=['diff_drive_controller', '--controller-manager', '/controller_manager'],
-            output='screen',
-        )],
+        parameters=[{
+            'config_file': os.path.join(pkg, 'config', 'ros_gz_bridge.yaml'),
+            'use_sim_time': True,
+        }],
     )
 
     return LaunchDescription([
@@ -130,6 +101,4 @@ def generate_launch_description():
         robot_state_publisher,
         spawn_robot,
         bridge,
-        load_joint_state_broadcaster,
-        load_diff_drive_controller,
     ])
