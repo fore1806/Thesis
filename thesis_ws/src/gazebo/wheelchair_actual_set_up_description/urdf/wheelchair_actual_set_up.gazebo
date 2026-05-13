@@ -134,6 +134,13 @@
   <selfCollide>true</selfCollide>
 </gazebo>
 
+<!-- Joint state publisher — required for /joint_states bridge to RSP -->
+<gazebo>
+  <plugin filename="libignition-gazebo6-joint-state-publisher-system.so"
+          name="ignition::gazebo::systems::JointStatePublisher">
+  </plugin>
+</gazebo>
+
 <!-- LiDAR Gazebo plug in-->
 <gazebo>
   <plugin name="ignition::gazebo::systems::Sensors"
