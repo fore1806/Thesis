@@ -5,6 +5,15 @@
 <xacro:include filename="$(find wheelchair_actual_set_up_description)/urdf/wheelchair_actual_set_up.trans" />
 <xacro:include filename="$(find wheelchair_actual_set_up_description)/urdf/wheelchair_actual_set_up.gazebo" />
 
+<!-- ── BASE FOOTPRINT (root — connects odom TF chain to base_link) ────────── -->
+<link name="base_footprint"/>
+
+<joint name="base_footprint_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+</joint>
+
 <link name="base_link">
   <inertial>
     <origin xyz="-0.2356937832244121 0.3149598277827342 0.5800850232561767" rpy="0 0 0"/>
@@ -444,20 +453,5 @@
   <child link="rear_lidar_1"/>
 </joint>
 
-<ros2_control name="WheelchairSystem" type="system">
-  <hardware>
-    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
-  </hardware>
-  <joint name="left_wheel_joint">
-    <command_interface name="velocity"/>
-    <state_interface name="velocity"/>
-    <state_interface name="position"/>
-  </joint>
-  <joint name="right_wheel_joint">
-    <command_interface name="velocity"/>
-    <state_interface name="velocity"/>
-    <state_interface name="position"/>
-  </joint>
-</ros2_control>
 
 </robot>
