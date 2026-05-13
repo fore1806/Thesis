@@ -32,7 +32,8 @@ def generate_launch_description():
         description='Set to false to run Gazebo headless')
 
     declare_world = DeclareLaunchArgument(
-        'world', default_value='empty.sdf',
+        'world',
+        default_value=os.path.join(pkg, 'worlds', 'wheelchair_world.sdf'),
         description='Gazebo world file to load')
 
     # ── Robot description (xacro → string) ───────────────────────────────────
@@ -94,6 +95,14 @@ def generate_launch_description():
         }],
     )
 
+    # 5. Odom → base_footprint TF broadcaster
+    odom_tf_broadcaster = Node(
+        package='wheelchair_actual_set_up_description',
+        executable='odom_tf_broadcaster',
+        output='screen',
+        parameters=[{'use_sim_time': True}],
+    )
+
     return LaunchDescription([
         declare_gui,
         declare_world,
@@ -101,4 +110,5 @@ def generate_launch_description():
         robot_state_publisher,
         spawn_robot,
         bridge,
+        odom_tf_broadcaster,
     ])
