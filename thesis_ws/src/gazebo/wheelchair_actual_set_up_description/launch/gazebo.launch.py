@@ -80,7 +80,7 @@ def generate_launch_description():
             '-topic', '/robot_description',
             '-x', '0.0',
             '-y', '0.0',
-            '-z', '0.05',
+            '-z', '0.002',
             '-R', '0.0',
             '-P', '0.0',
             '-Y', '0.0',
@@ -108,7 +108,15 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}],
     )
 
-    # 6. RViz2 visualization (optional)
+    # 6. Static world geometry markers for RViz
+    world_markers = Node(
+        package='wheelchair_actual_set_up_description',
+        executable='world_markers_publisher',
+        output='screen',
+        parameters=[{'use_sim_time': True}],
+    )
+
+    # 7. RViz2 visualization (optional)
     rviz_config = os.path.join(pkg, 'config', 'wheelchair_sim.rviz')
     rviz = Node(
         package='rviz2',
@@ -128,5 +136,6 @@ def generate_launch_description():
         spawn_robot,
         bridge,
         odom_tf_broadcaster,
+        world_markers,
         rviz,
     ])

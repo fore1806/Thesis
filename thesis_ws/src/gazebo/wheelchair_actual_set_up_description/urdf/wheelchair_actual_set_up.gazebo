@@ -153,7 +153,7 @@
 <gazebo reference="rear_lidar_1">
   <material>Gazebo/Black</material>
   <sensor name="rear_lidar_sensor" type="gpu_lidar">
-    <pose>0 0 0 0 0 3.14159</pose>
+    <pose>0 0 0.04 0 0 3.926991</pose>
     <always_on>true</always_on>
     <visualize>true</visualize>
     <update_rate>15</update_rate>
@@ -186,7 +186,7 @@
 <gazebo reference="front_Lidar_1">
   <material>Gazebo/Black</material>
   <sensor name="front_lidar_sensor" type="gpu_lidar">
-    <pose>0 0 0 0 0 0</pose>
+    <pose>0 0 0.04 0 0 0.785398</pose>
     <always_on>true</always_on>
     <visualize>true</visualize>
     <update_rate>15</update_rate>
