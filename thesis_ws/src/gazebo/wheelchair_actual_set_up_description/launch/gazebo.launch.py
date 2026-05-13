@@ -17,6 +17,7 @@ from launch.actions import (
     DeclareLaunchArgument,
     IncludeLaunchDescription,
 )
+from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
@@ -30,6 +31,10 @@ def generate_launch_description():
     declare_gui = DeclareLaunchArgument(
         'gui', default_value='true',
         description='Set to false to run Gazebo headless')
+
+    declare_rviz = DeclareLaunchArgument(
+        'rviz', default_value='true',
+        description='Set to false to skip launching RViz')
 
     declare_world = DeclareLaunchArgument(
         'world',
@@ -75,8 +80,8 @@ def generate_launch_description():
             '-topic', '/robot_description',
             '-x', '0.0',
             '-y', '0.0',
-            '-z', '0.05',   # slight lift so it doesn't clip the ground plane
-            '-R', '1.5708', # Correct the bad orientation
+            '-z', '0.05',
+            '-R', '0.0',
             '-P', '0.0',
             '-Y', '0.0',
         ],
@@ -103,12 +108,25 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}],
     )
 
+    # 6. RViz2 visualization (optional)
+    rviz_config = os.path.join(pkg, 'config', 'wheelchair_sim.rviz')
+    rviz = Node(
+        package='rviz2',
+        executable='rviz2',
+        output='screen',
+        arguments=['-d', rviz_config],
+        parameters=[{'use_sim_time': True}],
+        condition=IfCondition(LaunchConfiguration('rviz')),
+    )
+
     return LaunchDescription([
         declare_gui,
+        declare_rviz,
         declare_world,
         gazebo,
         robot_state_publisher,
         spawn_robot,
         bridge,
         odom_tf_broadcaster,
+        rviz,
     ])
