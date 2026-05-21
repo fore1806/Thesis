@@ -29,6 +29,8 @@
   <material>${body_color}</material>
   <mu1>1.0</mu1>
   <mu2>1.0</mu2>
+  <kp>500000.0</kp>
+  <kd>10.0</kd>
   <selfCollide>false</selfCollide>
 </gazebo>
 
@@ -36,6 +38,8 @@
   <material>${body_color}</material>
   <mu1>1.0</mu1>
   <mu2>1.0</mu2>
+  <kp>500000.0</kp>
+  <kd>10.0</kd>
   <selfCollide>false</selfCollide>
 </gazebo>
 
