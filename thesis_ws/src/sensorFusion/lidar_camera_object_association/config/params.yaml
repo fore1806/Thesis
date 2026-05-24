@@ -1,0 +1,39 @@
+# =============================================================================
+#  params.yaml  –  lidar_camera_Object_Association (C++ node)
+#
+#  All parameters are declared with defaults in association_node.cpp.
+#  Edit here to tune for your deployment without recompiling.
+# =============================================================================
+
+association_node:
+  ros__parameters:
+
+    # ── Topic names ──────────────────────────────────────────────────────────
+    lidar_topic:       "/rslidar_points"
+    objects_topic:     "/zed/zed_node/obj_det/objects"
+    camera_info_topic: "/zed/zed_node/rgb/camera_info"
+
+    # ── Frame IDs ────────────────────────────────────────────────────────────
+    # lidar_frame  : fixed frame published by the RoboSense driver
+    # camera_frame : left optical frame published by the ZED driver
+    lidar_frame:  "rslidar"
+    camera_frame: "zed_camera_center"
+
+    # ── Time synchronisation ─────────────────────────────────────────────────
+    # sync_slop       : max allowed timestamp difference between topics [s]
+    # sync_queue_size : per-topic queue depth for ApproximateTimeSynchronizer
+    sync_slop:       0.10     # raise to 0.15–0.20 if bag has clock drift
+    sync_queue_size: 10
+
+    # ── CropBox filter ───────────────────────────────────────────────────────
+    # cropbox_margin : expand each OBB on all sides by this amount [m]
+    #                  Compensates for minor extrinsic calibration error.
+    cropbox_margin: 0.05
+
+    # ── Association quality gate ─────────────────────────────────────────────
+    # min_object_points : skip an object if fewer points survive the cropbox
+    min_object_points: 3
+
+    # ── Visualisation ────────────────────────────────────────────────────────
+    # marker_lifetime_s : RViz2 auto-deletes markers older than this [s]
+    marker_lifetime_s: 0.20

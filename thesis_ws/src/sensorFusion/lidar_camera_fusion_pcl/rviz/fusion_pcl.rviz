@@ -1,0 +1,76 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Time
+    Name: Time
+    SyncMode: 0
+    SyncSource: Fused cloud
+
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/PointCloud2
+      Name: LiDAR raw
+      Topic:
+        Value: /rslidar_points
+        Depth: 5
+      Enabled: true
+      Style: Points
+      Size (Pixels): 1
+      Color Transformer: Intensity
+      Alpha: 0.5
+
+    - Class: rviz_default_plugins/PointCloud2
+      Name: ZED cloud raw
+      Topic:
+        Value: /zed/zed_node/point_cloud/cloud_registered
+        Depth: 5
+      Enabled: false
+      Style: Points
+      Size (Pixels): 1
+      Color Transformer: RGB8
+
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Fused cloud
+      Topic:
+        Value: /fused_cloud
+        Depth: 5
+      Enabled: true
+      Style: Points
+      Size (Pixels): 2
+      Color Transformer: RGB8
+      Alpha: 1.0
+
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Frame Timeout: 15
+      Marker Scale: 0.5
+
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Plane: XY
+      Cell Size: 1.0
+      Line Style:
+        Line Width: 0.03
+      Color: 160; 160; 164
+
+  Global Options:
+    Background Color: 25; 25; 25
+    Fixed Frame: base_link
+    Frame Rate: 30
+
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+
+  Value: Visualization Manager
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 15
+      Pitch: 0.6
+      Yaw: 0.8
