@@ -1,0 +1,8 @@
+MAYO 19
+
+https://developer.nvidia.com/sdk-manager 
+https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit#write
+
+sdkmanager
+Pin 9 and 10 connected
+poner el usb c y al computador
