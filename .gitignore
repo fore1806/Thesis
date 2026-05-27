@@ -1,25 +1,64 @@
-# Ignorar la carpeta CV
-CV/
+# ============================================
+# ROS 2 build artifacts (any depth)
+# ============================================
+**/build/
+**/install/
+**/log/
+**/devel/
 
-# Ignorar DOCUMENTS
-DOCUMENTS/
+# ============================================
+# Python compiled files
+# ============================================
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
 
-# Ignorar Slides
-SLIDES/
-
-# Ignorar Los Datos de ROS
-thesis_ws/build/
-thesis_ws/devel/
-thesis_ws/install/
-thesis_ws/log/
-
-# Ignorar bags y datos de sensores grandes
+# ============================================
+# ROS bags and large sensor data
+# ============================================
 *.db3
 *.db3-shm
 *.db3-wal
+*.mcap
 thesis_ws/src/bags/zed_sessions/
 thesis_ws/src/bags/fusion_sensor/session*/
 
-# Ignorar archivos compilados de Python
-__pycache__/
-*.pyc
+# ============================================
+# MATLAB / Simulink artifacts
+# ============================================
+MPC_MATLAB/slprj/
+*.asv
+*.mexa64
+*.mexw64
+*.mexmaca64
+*.mat.bak
+
+# ============================================
+# Local docs (kept outside the repo)
+# ============================================
+CV/
+DOCUMENTS/
+SLIDES/
+
+# ============================================
+# IDE / Editor
+# ============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ============================================
+# OS
+# ============================================
+.DS_Store
+Thumbs.db
+
+# ===========================================
+# Drivers
+# ===========================================
+thesis_ws/src/drivers/zed-ros2-wrapper/
+thesis_ws/src/drivers/rslidar_sdk/
+thesis_ws/src/drivers/rslidar_msg/
