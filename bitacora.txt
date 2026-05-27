@@ -6,3 +6,12 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit#
 sdkmanager
 Pin 9 and 10 connected
 poner el usb c y al computador
+
+=== 2026-05-27 — LiDAR connectivity verified ===
+- Jetson eth interface: enP8p1s0 @ 192.168.1.102/24
+- LiDAR: RS-Helios-16P @ 192.168.1.200 (factory default)
+- MSOP (port 6699): streaming at ~hundreds of pkts/sec, 1248 bytes each
+- DIFOP (port 7788): streaming at 1 Hz
+- Link: 100 Mb/s Full Duplex, no packet drops
+- Ready for rslidar_sdk launch
+
