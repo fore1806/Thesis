@@ -62,3 +62,10 @@ Thumbs.db
 thesis_ws/src/drivers/zed-ros2-wrapper/
 thesis_ws/src/drivers/rslidar_sdk/
 thesis_ws/src/drivers/rslidar_msg/
+
+# ============================================
+# Platform-specific colcon build exclusions
+# COLCON_IGNORE marks packages to skip on THIS machine only
+# (e.g. Gazebo sim packages skipped on Jetson, kept on x86)
+# ============================================
+**/COLCON_IGNORE
