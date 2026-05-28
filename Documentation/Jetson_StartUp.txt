@@ -1,4 +1,0 @@
-Pasos de instalacion:
-
-Descargar el SDK de Nvidia
-
